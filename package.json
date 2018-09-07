@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-app",
+  "version": "1.0.0",
+  "description": "Nodejs Web application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/start.js",
+    "build": "tsc --sourcemap --outDir ./dist/ --rootDir ./ --module commonjs ./server/boot.ts --experimentalDecorators && node ./dist/server/boot.js "
+  },
+  "devDependencies": {
+    "@types/node": "^10.9.4",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "fs-extra": "^7.0.0",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "swig": "^1.4.2"
+  },
+  "dependencies": {}
+}

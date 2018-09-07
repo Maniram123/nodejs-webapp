@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Weather Report App</title>
+    <base href="/">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "/api/weather/" + '40.0026767,-75.2581195,11',
+                cache: false,
+                success: function (res) {
+
+                    var html = '';
+
+                    if (res) {
+
+                        $('.summary p').html(res.timezone);
+
+                        html += '<td>' + res.currently["summary"] + '</td>';
+                        html += '<td>' + res.currently["apparentTemperature"] + '</td>';
+                        html += '<td>' + res.currently["humidity"] + '%</td>';
+                        html += '<td>' + res.currently["pressure"] + '</td>';
+                        html += '<td>' + res.currently["windSpeed"] + 'Km/h</td>';
+                        html += '<td>' + res.currently["visibility"] + '</td>';
+
+                        $("#results").append(html);
+                    }
+                }
+            });
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <header class="bg-info text-center font-weight-bold p-3 ">
+        <h3>Weather Report</h3>
+    </header>
+    <main>
+        <div class="container border h-25 w-75">
+            <div class="summary">
+                <label>Location Time Zone</label>
+                <p></p>
+            </div>
+            <table width="100%">
+                <tr>
+                    <th>
+                        Summary
+                    </th>
+                    <th>
+                        Temperature
+                    </th>
+                    <th>
+                        Humidity
+                    </th>
+                    <th>
+                        Pressure
+                    </th>
+                    <th>
+                        Wind Speed
+                    </th>
+                    <th>
+                        Visibility
+                    </th>
+                </tr>
+                <tr id="results">
+
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
